@@ -1,0 +1,70 @@
+{
+  "name": "headless_electron",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "./src/main/main.js",
+  "scripts": {
+    "start": "DISPLAY=localhost:1.0 electron .",
+    "build-l": "electron-builder -l",
+    "build-m": "electron-builder -m"
+  },
+  "build": {
+    "productName": "test-demo",
+    "appId": "org.simulatedgreg.electron-vue",
+    "directories": {
+      "output": "build"
+    },
+    "asar": true,
+    "files": [
+
+    ],
+    "asarUnpack": [
+      "src/main/*",
+      "src/renderer/*",
+      "index.html"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ],
+      "icon": "build/icons/icon2.icns"
+    },
+    "mac": {
+      "icon": "build/icons/icon2.icns"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico"
+    },
+    "linux": {
+      "icon": "build/icons"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@code.byted.org:linchengyong/headless_electron.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "jacklin",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^3.0.10",
+    "electron-builder": "^20.24.4"
+  },
+  "dependencies": {}
+}

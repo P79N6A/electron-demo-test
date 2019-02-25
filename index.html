@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+</head>
+<body>
+<h1>Hello World!</h1>
+<webview src="./src/renderer/beta.html" style="width:200px;height:100px;" id="testWebview" preload="./preload.js"></webview>
+<script>
+    let fs = require('fs')
+
+    let webview = document.getElementById("testWebview");
+    webview.addEventListener('dom-ready', function(){
+        window.setTimeout(function() {
+            captureScreen(webview)
+        }, 1000)
+        
+    })
+
+    function captureScreen(target) {
+        target.capturePage({
+            x:0, 
+            y:0,
+            width: 200,
+            height: 100
+        }, function (result) {            
+            result.resize({quality: 'good'});
+            let data = result.toDataURL();
+            console.log('captureScreen', data)
+            fs.writeFile('./data.txt', data, (err)=> {
+                if (err) {
+                    console.log(err);
+                }
+            })
+        })
+    }
+</script>
+</body>
+</html>
